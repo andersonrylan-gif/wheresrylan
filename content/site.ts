@@ -23,5 +23,5 @@ export const tiles = [
   { href: "/professional", label: "Professional", blurb: "Work & experience" },
   { href: "/projects", label: "Projects", blurb: "Things I've built" },
   { href: "/about", label: "About", blurb: "Who I am" },
-  { href: "/fun", label: "Who is Rylan?", blurb: "Everything else" },
+  { href: "/fun", label: "Fun", blurb: "Everything else" },
 ] as const;

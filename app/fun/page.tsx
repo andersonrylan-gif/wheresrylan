@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageShell, Row } from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Who is Rylan?",
+  title: "Fun",
   description: "Everything else.",
 };
 
@@ -15,7 +15,7 @@ const lists = [
 
 export default function FunPage() {
   return (
-    <PageShell title="Who is Rylan?" intro="TODO: the stuff outside of work.">
+    <PageShell title="Fun" intro="TODO: the stuff outside of work.">
       {lists.map((l) => (
         <Row key={l.label} label={l.label}>
           <ul className="space-y-1">
