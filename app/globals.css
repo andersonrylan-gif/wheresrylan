@@ -6,6 +6,9 @@
   --rule: 3px;
 }
 
+/* Devices with a real mouse; phones and tablets never match. */
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
+
 @theme inline {
   --color-ink: var(--ink);
   --color-paper: var(--paper);
@@ -27,13 +30,20 @@ body {
   color: var(--paper);
 }
 
-/* Underline that grows from the left on hover. */
+/* Underline that grows from the left on hover. The invisible ::after
+   enlarges the tap area for thumbs without changing the layout. */
 .link {
+  position: relative;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0% 2px;
   background-position: 0 100%;
   background-repeat: no-repeat;
   transition: background-size 0.2s ease;
+}
+.link::after {
+  content: "";
+  position: absolute;
+  inset: -10px -6px;
 }
 .link:hover,
 .link:focus-visible {

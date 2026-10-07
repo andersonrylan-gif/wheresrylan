@@ -3,7 +3,7 @@ import { site, socials } from "@/content/site";
 
 export function Header() {
   return (
-    <header className="flex flex-col gap-3 border-b-[length:var(--rule)] border-ink px-4 py-4 sm:px-8 sm:py-6 md:flex-row md:items-start md:justify-between">
+    <header className="flex flex-col gap-4 border-b-[length:var(--rule)] border-ink px-4 py-4 sm:px-8 sm:py-6 md:flex-row md:items-start md:justify-between">
       <div>
         <Link
           href="/"

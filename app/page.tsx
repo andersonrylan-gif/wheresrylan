@@ -19,7 +19,7 @@ export default function Home() {
         >
           <div className="flex items-start justify-between text-sm font-semibold uppercase tracking-[0.2em]">
             <span>0{i + 1}</span>
-            {/* Always shown on touch screens; slides in on hover on desktop. */}
+            {/* Always shown on touch screens; slides in on hover with a mouse. */}
             <svg
               aria-hidden
               viewBox="0 0 24 24"
@@ -27,7 +27,7 @@ export default function Home() {
               stroke="currentColor"
               strokeWidth={2.5}
               strokeLinecap="square"
-              className="size-8 transition-all duration-200 md:size-12 md:-translate-x-3 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:group-focus-visible:translate-x-0 md:group-focus-visible:opacity-100"
+              className="size-8 transition-all duration-200 md:size-12 can-hover:-translate-x-3 can-hover:opacity-0 can-hover:group-hover:translate-x-0 can-hover:group-hover:opacity-100 can-hover:group-focus-visible:translate-x-0 can-hover:group-focus-visible:opacity-100"
             >
               <path d="M3 12h17M13 5l7 7-7 7" />
             </svg>
