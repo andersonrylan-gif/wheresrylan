@@ -17,7 +17,7 @@ export function PageShell({
       >
         ← Back
       </Link>
-      <h1 className="mt-6 font-display text-[clamp(3rem,13vw,11rem)] uppercase leading-[0.85] tracking-tighter break-words">
+      <h1 className="mt-6 font-display text-[clamp(2rem,10vw,10rem)] uppercase leading-[0.85] tracking-tighter break-words">
         {title}
       </h1>
       {intro && (

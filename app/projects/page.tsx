@@ -16,7 +16,7 @@ export default function ProjectsPage() {
       >
         ← Back
       </Link>
-      <h1 className="mt-6 font-display text-[clamp(3rem,13vw,11rem)] uppercase leading-[0.85] tracking-tighter">
+      <h1 className="mt-6 font-display text-[clamp(2rem,10vw,10rem)] uppercase leading-[0.85] tracking-tighter">
         Projects
       </h1>
 
@@ -33,7 +33,7 @@ export default function ProjectsPage() {
           </ol>
         </nav>
 
-        <div>
+        <div className="@container min-w-0">
           {projects.map((p, i) => (
             <section
               key={p.slug}
@@ -44,7 +44,7 @@ export default function ProjectsPage() {
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <span>{p.year}</span>
               </div>
-              <h2 className="mt-3 font-display text-[clamp(2.25rem,6vw,4.5rem)] uppercase leading-[0.9] tracking-tight break-words">
+              <h2 className="mt-3 font-display text-[min(7.5cqw,4.5rem)] uppercase leading-[0.9] tracking-tight break-words">
                 {p.name}
               </h2>
               <p className="mt-4 text-xl font-semibold">{p.tagline}</p>
