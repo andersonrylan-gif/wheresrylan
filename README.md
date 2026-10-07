@@ -1,4 +1,4 @@
-# whereasrylan.com
+# wheresrylan.com
 
 Rylan Anderson's personal site. Next.js (static), Tailwind, deployed on Vercel.
 

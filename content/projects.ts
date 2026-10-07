@@ -25,8 +25,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "whereasrylan",
-    name: "whereasrylan.com",
+    slug: "wheresrylan",
+    name: "wheresrylan.com",
     year: "2026",
     tagline: "This website.",
     description: [
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
     links: [
-      { label: "GitHub", href: "https://github.com/andersonrylan-gif/whereasrylan" },
+      { label: "GitHub", href: "https://github.com/andersonrylan-gif/wheresrylan" },
     ],
   },
   // TODO: add more projects

@@ -37,7 +37,7 @@ export default async function Image() {
         }}
       >
         <div style={{ fontSize: 28, letterSpacing: 8, textTransform: "uppercase" }}>
-          whereasrylan.com
+          wheresrylan.com
         </div>
         <div
           style={{

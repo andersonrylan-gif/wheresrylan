@@ -9,7 +9,7 @@ export function Header() {
           {site.name}
         </span>
         <span className="mt-1 block text-xs uppercase tracking-[0.2em]">
-          Whereas, Rylan.
+          Where&apos;s Rylan?
         </span>
       </Link>
       <nav aria-label="Elsewhere">

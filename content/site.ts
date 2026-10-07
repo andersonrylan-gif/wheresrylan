@@ -3,7 +3,7 @@
 
 export const site = {
   name: "Rylan Anderson",
-  url: "https://whereasrylan.com",
+  url: "https://wheresrylan.com",
   // One line under the name in the header, and the default meta description.
   tagline: "Builder, operator, and occasional tinkerer.", // TODO: make it yours
   location: "TODO: City, State",
