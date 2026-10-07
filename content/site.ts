@@ -13,7 +13,7 @@ export const site = {
 export type Social = { label: string; href: string };
 
 export const socials: Social[] = [
-  { label: "Instagram", href: "https://www.instagram.com/TODO" }, // TODO: handle
+  { label: "Instagram", href: "https://www.instagram.com/wheresrylan/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/TODO" }, // TODO: handle
   { label: "Email", href: `mailto:${site.email}` },
   { label: "GitHub", href: "https://github.com/andersonrylan-gif" },
