@@ -1,53 +1,78 @@
 import Link from "next/link";
 import { GitHubStrip } from "@/components/GitHubStrip";
-import { tiles } from "@/content/site";
+import { projects } from "@/content/projects";
+import { intro, nav } from "@/content/site";
 
 export default function Home() {
   return (
-    <>
-      <GitHubStrip />
-      <main className="grid flex-1 grid-cols-1 md:min-h-[26rem] md:grid-cols-2 md:grid-rows-2">
-        {tiles.map((tile, i) => (
-          <Link
-            key={tile.href}
-            href={tile.href}
-            className={[
-              "@container group relative flex min-h-[28svh] flex-col justify-between p-5 transition-colors duration-150 sm:p-8",
-              "hover:bg-ink hover:text-paper focus-visible:bg-ink focus-visible:text-paper focus-visible:outline-none",
-              // Thick rules between tiles: bottom on all but the last, right on the left column.
-              i < tiles.length - 1
-                ? "border-b-[length:var(--rule)] border-ink"
-                : "",
-              i >= 2 ? "md:border-b-0" : "",
-              i % 2 === 0 ? "md:border-r-[length:var(--rule)]" : "",
-            ].join(" ")}
-          >
-            <div className="flex items-start justify-between text-sm font-semibold uppercase tracking-[0.2em]">
-              <span>0{i + 1}</span>
-              {/* Always shown on touch screens; slides in on hover with a mouse. */}
-              <svg
-                aria-hidden
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2.5}
-                strokeLinecap="square"
-                className="size-8 transition-all duration-200 md:size-12 can-hover:-translate-x-3 can-hover:opacity-0 can-hover:group-hover:translate-x-0 can-hover:group-hover:opacity-100 can-hover:group-focus-visible:translate-x-0 can-hover:group-focus-visible:opacity-100"
+    <main className="mx-auto w-full max-w-2xl flex-1 px-6">
+      {/* Intro */}
+      <section className="pt-12 pb-16 text-center sm:pt-20 sm:pb-20">
+        <h1 className="font-serif text-4xl leading-tight sm:text-6xl">
+          {intro.greeting}
+        </h1>
+        <div className="mx-auto mt-8 max-w-xl space-y-4 text-lg leading-relaxed text-muted">
+          {intro.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
+        <Link href="/about" className="eyebrow link mt-8 inline-block">
+          More about me
+        </Link>
+      </section>
+
+      {/* Explore */}
+      <section aria-labelledby="explore" className="border-t border-line pt-12">
+        <h2 id="explore" className="eyebrow text-center text-muted">
+          Explore
+        </h2>
+        <ul className="mt-6">
+          {nav.map((item) => (
+            <li key={item.href} className="border-b border-line last:border-b-0">
+              <Link
+                href={item.href}
+                className="group flex items-baseline justify-between gap-6 py-6"
               >
-                <path d="M3 12h17M13 5l7 7-7 7" />
-              </svg>
-            </div>
-            <div>
-              <span className="block font-display text-[min(12cqw,9rem)] uppercase leading-[0.85] tracking-tighter">
-                {tile.label}
-              </span>
-              <span className="mt-3 block text-sm uppercase tracking-[0.2em]">
-                {tile.blurb}
-              </span>
-            </div>
+                <span className="font-serif text-2xl sm:text-3xl">{item.label}</span>
+                <span className="flex items-baseline gap-3 text-sm text-muted">
+                  <span className="hidden sm:inline">{item.blurb}</span>
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Latest projects */}
+      <section aria-labelledby="latest" className="mt-12 border-t border-line pt-12">
+        <h2 id="latest" className="eyebrow text-center text-muted">
+          Latest projects
+        </h2>
+        <div className="mt-8 grid gap-10 sm:grid-cols-2">
+          {projects.slice(0, 2).map((p) => (
+            <Link key={p.slug} href={`/projects#${p.slug}`} className="group block">
+              <p className="eyebrow text-faint">{p.year}</p>
+              <h3 className="mt-2 font-serif text-2xl group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
+                {p.name}
+              </h3>
+              <p className="mt-2 leading-relaxed text-muted">{p.tagline}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link href="/projects" className="eyebrow link">
+            All projects
           </Link>
-        ))}
-      </main>
-    </>
+        </div>
+      </section>
+
+      <GitHubStrip />
+    </main>
   );
 }

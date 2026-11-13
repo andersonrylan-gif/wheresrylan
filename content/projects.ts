@@ -30,7 +30,7 @@ export const projects: Project[] = [
     year: "2026",
     tagline: "This website.",
     description: [
-      "A bold, black-and-white personal site. Statically rendered with Next.js and deployed on Vercel.",
+      "A quiet, minimal personal site: lots of white space, a serif for headings, and nothing boxed in. Statically rendered with Next.js and deployed on Vercel.",
     ],
     stack: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
     links: [

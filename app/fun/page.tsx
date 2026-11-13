@@ -1,31 +1,25 @@
 import type { Metadata } from "next";
-import { PageShell, Row } from "@/components/PageShell";
+import { PageShell, Section } from "@/components/PageShell";
+import { fun } from "@/content/fun";
 
 export const metadata: Metadata = {
   title: "Fun",
   description: "Everything else.",
 };
 
-// TODO: replace with your own lists.
-const lists = [
-  { label: "Reading", items: ["Book one", "Book two", "Book three"] },
-  { label: "Listening", items: ["Album or podcast", "Another one"] },
-  { label: "Doing", items: ["Hobby", "Sport", "Side quest"] },
-];
-
 export default function FunPage() {
   return (
-    <PageShell title="Fun" intro="TODO: the stuff outside of work.">
-      {lists.map((l) => (
-        <Row key={l.label} label={l.label}>
-          <ul className="space-y-1">
+    <PageShell title="Fun" intro={fun.intro}>
+      {fun.lists.map((l) => (
+        <Section key={l.label} label={l.label}>
+          <ul className="space-y-2">
             {l.items.map((item) => (
-              <li key={item} className="font-display text-2xl uppercase sm:text-3xl">
+              <li key={item} className="font-serif text-xl">
                 {item}
               </li>
             ))}
           </ul>
-        </Row>
+        </Section>
       ))}
     </PageShell>
   );

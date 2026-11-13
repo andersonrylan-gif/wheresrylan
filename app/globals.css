@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
+/* Design tokens. See docs/DESIGN.md before changing these. */
 :root {
-  --ink: #000000;
-  --paper: #ffffff;
-  --rule: 3px;
+  --ink: #111111;     /* body text, headings */
+  --muted: #58595a;   /* secondary text, labels */
+  --faint: #9a9a9a;   /* tertiary text, empty states */
+  --line: #e4e4e4;    /* hairline dividers */
+  --paper: #ffffff;   /* background */
 }
-
-/* Devices with a real mouse; phones and tablets never match. */
-@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
 
 @theme inline {
   --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
   --color-paper: var(--paper);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-archivo-black);
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  /* Palatino ships with macOS, iOS and Windows, so no web font download. */
+  --font-serif: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 html {
@@ -30,29 +34,41 @@ body {
   color: var(--paper);
 }
 
-/* Underline that grows from the left on hover. The invisible ::after
-   enlarges the tap area for thumbs without changing the layout. */
-.link {
-  position: relative;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 2px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.2s ease;
+/* Small uppercase label used for nav, section names and metadata. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.link::after {
-  content: "";
-  position: absolute;
-  inset: -10px -6px;
+
+/* Quiet text link: thin underline that darkens on hover. */
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: currentColor;
+  }
 }
-.link:hover,
-.link:focus-visible {
-  background-size: 100% 2px;
+
+/* Link with no underline until hover, for nav and lists. */
+@utility link-plain {
+  transition: color 0.2s ease;
+  &:hover,
+  &:focus-visible {
+    color: var(--ink);
+  }
 }
 
 :focus-visible {
-  outline: var(--rule) solid var(--ink);
-  outline-offset: 3px;
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,49 +1,29 @@
 import type { Metadata } from "next";
-import { PageShell, Row } from "@/components/PageShell";
+import { PageShell, Section } from "@/components/PageShell";
+import { professional } from "@/content/professional";
 
 export const metadata: Metadata = {
   title: "Professional",
   description: "Work and experience.",
 };
 
-// TODO: replace with real roles, newest first.
-const roles = [
-  {
-    when: "20XX — Now",
-    title: "Your Title",
-    org: "Company",
-    summary: "One or two lines on what you own and the impact you've had.",
-  },
-  {
-    when: "20XX — 20XX",
-    title: "Previous Title",
-    org: "Previous Company",
-    summary: "What you did there and what you're proud of.",
-  },
-];
-
 export default function ProfessionalPage() {
   return (
-    <PageShell
-      title="Professional"
-      intro="TODO: a short paragraph on what you do, the kind of problems you like, and what you're looking for."
-    >
-      {roles.map((r) => (
-        <Row key={r.title + r.org} label={r.when}>
-          <h3 className="font-display text-2xl uppercase leading-tight sm:text-3xl">
+    <PageShell title="Professional" intro={professional.intro}>
+      {professional.roles.map((r) => (
+        <Section key={r.title + r.org} label={r.when}>
+          <h3 className="font-serif text-2xl leading-snug">
             {r.title}
-            <span className="block text-base font-sans font-semibold tracking-[0.15em]">
-              {r.org}
-            </span>
+            <span className="text-muted"> · {r.org}</span>
           </h3>
-          <p>{r.summary}</p>
-        </Row>
+          <p className="text-muted">{r.summary}</p>
+        </Section>
       ))}
-      <Row label="Elsewhere">
-        <p>
-          Full history on LinkedIn. Links are at the top of every page.
+      <Section label="Elsewhere">
+        <p className="text-muted">
+          Full history on LinkedIn. Links are at the bottom of every page.
         </p>
-      </Row>
+      </Section>
     </PageShell>
   );
 }

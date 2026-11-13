@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+/** Standard inner page: centered serif title, optional intro, narrow column. */
 export function PageShell({
   title,
   intro,
@@ -7,47 +6,37 @@ export function PageShell({
 }: {
   title: string;
   intro?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
-    <main className="flex-1 px-4 py-8 sm:px-8 sm:py-12">
-      <Link
-        href="/"
-        className="link text-sm font-semibold uppercase tracking-[0.2em]"
-      >
-        ← Back
-      </Link>
-      <h1 className="mt-6 font-display text-[clamp(2rem,10vw,10rem)] uppercase leading-[0.85] tracking-tighter break-words">
-        {title}
-      </h1>
-      {intro && (
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed sm:text-xl">
-          {intro}
-        </p>
-      )}
-      <div className="mt-12 border-t-[length:var(--rule)] border-ink pt-10">
-        {children}
-      </div>
+    <main className="mx-auto w-full max-w-2xl flex-1 px-6 pt-12 sm:pt-16">
+      <header className="text-center">
+        <h1 className="font-serif text-4xl leading-tight sm:text-5xl">{title}</h1>
+        {intro && (
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            {intro}
+          </p>
+        )}
+      </header>
+      {children && <div className="mt-16">{children}</div>}
     </main>
   );
 }
 
-/** A labeled row: small uppercase label on the left, content on the right. */
-export function Row({
+/** A section with a small uppercase label above its content. */
+export function Section({
   label,
+  id,
   children,
 }: {
   label: React.ReactNode;
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-3 border-b border-ink py-8 first:pt-0 md:grid-cols-[14rem_1fr] md:gap-10">
-      <h2 className="text-sm font-semibold uppercase tracking-[0.2em]">
-        {label}
-      </h2>
-      <div className="max-w-2xl space-y-4 text-lg leading-relaxed">
-        {children}
-      </div>
+    <section id={id} className="scroll-mt-10 border-t border-line py-10 first:border-t-0 first:pt-0">
+      <h2 className="eyebrow mb-4 text-muted">{label}</h2>
+      <div className="space-y-4 text-lg leading-relaxed">{children}</div>
     </section>
   );
 }

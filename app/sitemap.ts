@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { site, tiles } from "@/content/site";
+import { nav, site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", ...tiles.map((t) => t.href)].map((path) => ({
+  return ["", ...nav.map((t) => t.href)].map((path) => ({
     url: `${site.url}${path}`,
   }));
 }

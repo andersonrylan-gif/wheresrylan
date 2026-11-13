@@ -3,9 +3,17 @@
 Rylan Anderson's personal site. Next.js (static), Tailwind, deployed on Vercel.
 
 ## Editing content
-- `content/site.ts`: name, tagline, social links, homepage tiles
-- `content/projects.ts`: the projects list
-- `app/professional`, `app/about`, `app/fun`: page copy (search for `TODO`)
+All words and links live in `content/`:
+- `site.ts`: name, tagline, homepage intro, socials, navigation
+- `projects.ts`: the projects list
+- `professional.ts`, `about.ts`, `fun.ts`: copy for those pages
+
+Run `grep -rn TODO content` to see what still needs real info.
+
+## Docs
+- `CLAUDE.md`: project map and conventions (start here)
+- `docs/DESIGN.md`: the visual rules
+- `docs/LOG.md`: what changed and why
 
 ## Develop
 ```sh

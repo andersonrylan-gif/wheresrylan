@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PageShell, Row } from "@/components/PageShell";
+import { PageShell, Section } from "@/components/PageShell";
+import { about } from "@/content/about";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -9,19 +10,21 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageShell
-      title="About"
-      intro="TODO: Hi, I'm Rylan. Two or three sentences on who you are, in your own voice."
-    >
-      <Row label="Based in">
-        <p>{site.location}</p>
-      </Row>
-      <Row label="Background">
-        <p>TODO: where you grew up, school, how you got into what you do.</p>
-      </Row>
-      <Row label="Currently">
-        <p>TODO: what you&apos;re working on, learning, or obsessed with.</p>
-      </Row>
+    <PageShell title="About" intro={about.intro}>
+      {about.sections.map((s) => (
+        <Section key={s.label} label={s.label}>
+          {s.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </Section>
+      ))}
+      <Section label="Say hello">
+        <p>
+          <a href={`mailto:${site.email}`} className="link">
+            {site.email}
+          </a>
+        </p>
+      </Section>
     </PageShell>
   );
 }

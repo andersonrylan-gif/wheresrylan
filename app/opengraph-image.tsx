@@ -5,11 +5,11 @@ export const alt = site.name;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Archivo Black for the bold look; falls back to the default font if the fetch fails.
-async function loadDisplayFont(text: string) {
+// Lato to match the site; falls back to the default font if the fetch fails.
+async function loadFont(text: string, weight: number) {
   try {
     const css = await fetch(
-      `https://fonts.googleapis.com/css2?family=Archivo+Black&text=${encodeURIComponent(text)}`,
+      `https://fonts.googleapis.com/css2?family=Lato:wght@${weight}&text=${encodeURIComponent(text)}`,
     ).then((r) => r.text());
     const url = css.match(/src: url\((.+?)\) format/)?.[1];
     if (!url) return null;
@@ -20,7 +20,17 @@ async function loadDisplayFont(text: string) {
 }
 
 export default async function Image() {
-  const font = await loadDisplayFont("RYLANDESOWHCM.rylandesowhcm");
+  const name = site.name;
+  const label = "WHERESRYLAN.COM";
+  const [light, bold] = await Promise.all([
+    loadFont(name, 300),
+    loadFont(label, 700),
+  ]);
+  const fonts = [
+    light && { name: "Lato", data: light, weight: 300 as const, style: "normal" as const },
+    bold && { name: "Lato", data: bold, weight: 700 as const, style: "normal" as const },
+  ].filter((f) => !!f);
+
   return new ImageResponse(
     (
       <div
@@ -29,36 +39,20 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#000",
-          color: "#fff",
-          padding: 72,
-          fontFamily: font ? "Archivo Black" : "sans-serif",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#ffffff",
+          color: "#111111",
+          fontFamily: fonts.length ? "Lato" : "sans-serif",
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: 8, textTransform: "uppercase" }}>
-          wheresrylan.com
-        </div>
-        <div
-          style={{
-            fontSize: 150,
-            lineHeight: 0.85,
-            letterSpacing: -6,
-            textTransform: "uppercase",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <span>Rylan</span>
-          <span>Anderson</span>
+        <div style={{ fontSize: 110, fontWeight: 300, letterSpacing: 2 }}>{name}</div>
+        <div style={{ width: 64, height: 2, background: "#e4e4e4", margin: "40px 0" }} />
+        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: 6, color: "#58595a" }}>
+          {label}
         </div>
       </div>
     ),
-    {
-      ...size,
-      fonts: font
-        ? [{ name: "Archivo Black", data: font, weight: 400, style: "normal" }]
-        : undefined,
-    },
+    { ...size, fonts: fonts.length ? fonts : undefined },
   );
 }

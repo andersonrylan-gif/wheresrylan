@@ -1,37 +1,35 @@
+"use client";
+
 import Link from "next/link";
-import { site, socials } from "@/content/site";
+import { usePathname } from "next/navigation";
+import { nav, site } from "@/content/site";
 
 export function Header() {
+  const pathname = usePathname();
   return (
-    <header className="flex flex-col gap-4 border-b-[length:var(--rule)] border-ink px-4 py-4 sm:px-8 sm:py-6 md:flex-row md:items-start md:justify-between">
-      <div>
-        <Link
-          href="/"
-          className="block font-display text-2xl uppercase leading-none tracking-tight sm:text-3xl"
-        >
-          {site.name}
-        </Link>
-        <a
-          href={`mailto:${site.email}`}
-          className="link mt-1 inline-block text-xs tracking-[0.1em]"
-        >
-          {site.email}
-        </a>
-      </div>
-      <nav aria-label="Elsewhere">
-        <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold uppercase tracking-[0.12em] sm:gap-x-5 sm:text-sm sm:tracking-[0.15em]">
-          {socials.map((s) => (
-            <li key={s.label}>
-              <a
-                href={s.href}
-                className="link"
-                rel="me noopener noreferrer"
-                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
-              >
-                {s.label}
-              </a>
-            </li>
-          ))}
+    <header className="px-6 pt-10 pb-6 text-center sm:pt-14">
+      <Link
+        href="/"
+        className="font-serif text-2xl tracking-wide sm:text-[1.7rem]"
+      >
+        {site.name}
+      </Link>
+      <nav aria-label="Main" className="mt-5">
+        <ul className="eyebrow flex flex-wrap justify-center gap-x-7 gap-y-2 text-muted">
+          {nav.map((item) => {
+            const active = pathname.startsWith(item.href);
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`link-plain inline-block py-1 ${active ? "text-ink" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>
